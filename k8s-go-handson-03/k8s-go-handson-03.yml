@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-go-handson-03
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: k8s-go-handson-03
+    spec:
+      containers:
+        - name: k8s-go-handson-03
+          image: "registry.ng.bluemix.net/anlixue/k8s-go-handson-03:v1"
+          env:
+            - name: WEBAPP_PORT
+              value: "8000"
+            - name: BLUEMIX_SERVICE_FILE
+              value: "/bluemix-rediscloud-service/binding"
+          #imagePullPolicy: Never
+          #imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+          # for bluemix redis service
+          volumeMounts:
+            - mountPath: /bluemix-rediscloud-service
+              name: bluemix-redis-volume
+      volumes:
+        - name: bluemix-redis-volume
+          secret:
+            secretName: binding-rediscloud-kubernetes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-go-handson-03
+  labels:
+    app: k8s-go-handson-03
+spec:
+  type: NodePort
+  selector:
+    app: k8s-go-handson-03
+  ports:
+   - protocol: TCP
+     port: 8000
+     nodePort: 30380
+
