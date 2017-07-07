@@ -19,6 +19,14 @@ web(frondend) + redis (backend)
 Demo Bluemix Kubernetes application use cloud foundry based services
 
 
+## Documents Published at IBM developer works 
+
+[Bluemix Kubernetes Handson Part1](https://www.ibm.com/developerworks/cn/cloud/library/cl-cn-bluemix-kubernetes-cluster-practice1/index.html)
+
+[Bluemix Kubernetes Handson Part2](https://www.ibm.com/developerworks/cn/cloud/library/cl-cn-bluemix-kubernetes-cluster-practice2/index.html)
+	
+
+
 
 
 
